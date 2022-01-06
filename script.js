@@ -23,6 +23,16 @@ function getComputerChoice() {
 function playGameRound() {
     const userChoice = prompt('Rock, paper or scissor?').toLowerCase().charAt(0); // first character of string ('lowercased')
     const computerChoice = getComputerChoice();
-    
+    console.log(userChoice + ' ' + computerChoice);
     return getWinner(userChoice, computerChoice);
+}
+
+let userWins = 0, computerWins = 0;
+
+for(let i = 0; i < 5; i++){
+    let winner = playGameRound();
+
+    if (winner == 'user') userWins++;
+    else if (winner == 'computer') computerWins++;
+    console.log(`Round ${i + 1}\nUser ${userWins} x Computer ${computerWins}`);
 }
