@@ -29,10 +29,18 @@ function playGameRound() {
 
 let userWins = 0, computerWins = 0;
 
-for(let i = 0; i < 5; i++){
+for (let i = 0; i < 5; i++) {
     let winner = playGameRound();
 
     if (winner == 'user') userWins++;
     else if (winner == 'computer') computerWins++;
     console.log(`Round ${i + 1}\nUser ${userWins} x Computer ${computerWins}`);
+}
+
+if (computerWins > userWins) {
+    console.log('Computer won!');
+} else if (userWins > computerWins) {
+    console.log('User won!');
+} else {
+    console.log(`I'ts a draw!`);
 }
