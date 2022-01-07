@@ -15,7 +15,7 @@ function getWinner(user, computer) {
 }
 
 function getComputerChoice() {
-    options = ['r', 'p', 's'];
+    const options = ['r', 'p', 's'];
     choice = options[Math.floor(Math.random()*3)];
     return choice;
 }
