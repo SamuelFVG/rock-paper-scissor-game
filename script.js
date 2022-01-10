@@ -1,4 +1,4 @@
-function getWinner(user, computer) {
+function getWinner(user, computer) { /*This function tests the values of both players to get the winner*/
     let winner;
 
     if (user == computer) {
@@ -16,7 +16,7 @@ function getWinner(user, computer) {
 
 function getComputerChoice() {
     const options = ['r', 'p', 's'];
-    choice = options[Math.floor(Math.random()*3)];
+    choice = options[Math.floor(Math.random()*3)]; // gets a random index between 0 and 2 (0, 1, 2) that is used to choose a random play
     return choice;
 }
 
@@ -32,7 +32,7 @@ let userWins = 0, computerWins = 0;
 for (let i = 0; i < 5; i++) {
     let winner = playGameRound();
 
-    if (winner == 'user') userWins++;
+    if (winner == 'user') userWins++; // 35 and 36 count the amount of wins each player had
     else if (winner == 'computer') computerWins++;
     console.log(`Round ${i + 1}\nUser ${userWins} x Computer ${computerWins}`);
 }
