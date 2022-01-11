@@ -57,7 +57,7 @@ function showResults(winner, loser) {
         setTimeout(() => {
             drawDivs.forEach(div => div.classList.remove("draw-class"));
             decideToContinue();
-        }, 500);
+        }, 250);
         
     }
     else{
@@ -69,7 +69,7 @@ function showResults(winner, loser) {
             winnerDiv.classList.remove("winner-class");
             loserDiv.classList.remove("loser-class");
             decideToContinue();
-        }, 500);
+        }, 250);
     }
 }
 
