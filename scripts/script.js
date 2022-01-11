@@ -91,7 +91,7 @@ function decideToContinue() {
     }
 
     const playAgainButton = document.createElement('button');
-    playAgainButton.textContent = 'Play Again?';
+    playAgainButton.textContent = 'Play Again';
     playAgainButton.classList.add('play-again');
 
     finalMessageDiv.appendChild(winnerMessageHeading);
