@@ -3,31 +3,32 @@
     <head>
         <meta charset="UTF-8">
         <title>Rock Paper Scissors</title>
-        <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript" src="scripts/script.js" defer></script>
         <link rel="stylesheet" href="styles/style.css">
     </head>
 
     <body>
         <main>
+            <div class="final-message"></div>
             <section class="user-in">
-                <div class="user-hover"><img src="images/rock.png"></div>
-                <div class="user-hover"><img src="images/paper.png"></div>
-                <div class="user-hover"> <img src="images/scissors.png"></div>
+                <div class="u r"><img src="images/rock.png"></div>
+                <div class="u p"><img src="images/paper.png"></div>
+                <div class="u s"> <img src="images/scissors.png"></div>
                 <div class="information">
                     <h1>USER</h1>
-                    <p>POINTS</p>
+                    <p class="user-wins">0 POINTS</p>
                 </div>
             </section>
 
             <div class ="line"></div>
 
             <section class="computer-in ">
-                <div><img src="images/rock.png"></div>
-                <div><img src="images/paper.png"></div>
-                <div><img src="images/scissors.png"></div>
+                <div class="c r"><img src="images/rock.png"></div>
+                <div class="c p"><img src="images/paper.png"></div>
+                <div class="c s"><img src="images/scissors.png"></div>
                 <div class="information computer">
                     <h1>COMPUTER</h1>
-                    <p>POINTS</p>
+                    <p class="computer-wins">0 POINTS</p>
                 </div>
             </section>
         </main>

@@ -28,8 +28,10 @@ section{
     gap: 20px;
 
 }
-div.line{
-    background-color:#070707;
+.line{
+    background: linear-gradient(-45deg, lightblue,lemonchiffon);
+    
+    
     padding: 5px;
     width: 80%;
     align-self: center;
@@ -38,15 +40,17 @@ div.line{
 section > *{
     color: lightblue;
     background-color: lightblue;
-    border: 3px black solid;
+    border: 3px solid;
     border-radius: 50%;
 }
-.user-hover:hover{
+/*
+.u:hover{
     box-shadow: 0 0 2px #070707;
     background-color: rgb(228, 192, 176);
 
     filter: invert(100%);
 }
+*/
 .computer-in > *{
     color: lemonchiffon;
     background-color: lemonchiffon;
@@ -76,4 +80,38 @@ p{
     margin: 0;
     padding: 0;
     
+}
+
+.winner-class{
+    background-color: lightgreen;
+    border-color: lightgreen;
+}
+.loser-class{
+    background-color: lightpink;
+    border-color: lightpink;
+}
+.draw-class{
+    background-color: lightgrey;
+    border-color: lightgrey;
+}
+
+.final-message{
+    display: flex;
+    margin: 0 0 50px;
+}
+
+.winner-message{ 
+    margin: 0; 
+    text-decoration: none;
+    margin-left: auto;
+}
+.play-again{
+
+    background: linear-gradient(-45deg, lightblue,lemonchiffon);
+    margin-left: auto;
+    border-color:lightblue;
+    border-radius: 10px;
+    padding: 0.8rem;
+    font-size: 0.8rem;
+    font-family: monospace;
 }

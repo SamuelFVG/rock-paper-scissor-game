@@ -1,46 +1,109 @@
-function getWinner(user, computer) { /*This function tests the values of both players to get the winner*/
-    let winner;
+const userInput = document.querySelectorAll(".u");
+const userWinsParagraph = document.querySelector(".user-wins");
+const computerWinsParagraph = document.querySelector(".computer-wins");
 
-    if (user == computer) {
-        winner = '';
-    }
-    else if ((user == 'r' && computer == 's') || (user == 'p' && computer == 'r') || (user == 's' && computer == 'p')){
-        winner = 'user';
-    }
-    else{
-        winner = 'computer';
-    }
-    
-    return winner;
+let computerWins = 0;
+let userWins = 0;
+
+startListening();
+
+function startListening(){
+    userInput.forEach(user => user.addEventListener('click', getUserChoice));
+}
+function stopListening(){
+    userInput.forEach(user => user.removeEventListener('click', getUserChoice));
 }
 
 function getComputerChoice() {
     const options = ['r', 'p', 's'];
-    choice = options[Math.floor(Math.random()*3)]; // gets a random index between 0 and 2 (0, 1, 2) that is used to choose a random play
-    return choice;
+    return options[Math.floor(Math.random(0, 2)*3)]; // gets random index between 0 and 2
+}
+function getUserChoice(e){ // when the user clicks the button, the round starts 
+    stopListening();
+    userChoice = this.classList.value[this.classList.value.length - 1]; //gets the last digit of the classes of the element (r, p or s)
+    computerChoice = getComputerChoice();
+
+    let winner = getWinner(computerChoice, userChoice), loser;
+    
+    if (winner[1] == 'c'){
+        loser = `.u.${userChoice}`;
+        computerWins++;
+    } else if (winner[1] == 'u'){
+        loser = `.c.${computerChoice}`
+        userWins++;
+    }
+
+    console.log(winner, loser, computerWins, userWins);
+    showResults(winner, loser);
 }
 
-function playGameRound() {
-    const userChoice = prompt('Rock, paper or scissor?').toLowerCase().charAt(0); // first character of string ('lowercased')
-    const computerChoice = getComputerChoice();
-    console.log(userChoice + ' ' + computerChoice);
-    return getWinner(userChoice, computerChoice);
+function getWinner(computer, user) {
+    if (computer == user){ 
+        return `.${computer}`;
+    }
+    else if (computer == 'r' && user == 's' || computer == 'p' && user == 'r' || computer == 's' && user == 'p'){
+        return `.c.${computer}`;
+    }
+    else{
+        return `.u.${user}`;
+    }
+}
+function showResults(winner, loser) {
+    userWinsParagraph.textContent = `${userWins} POINTS`;
+    computerWinsParagraph.textContent = `${computerWins} POINTS`;
+    if(winner[1] != 'u' && winner[1] != 'c'){
+        drawDivs = document.querySelectorAll(winner);
+        drawDivs.forEach(div => div.classList.add("draw-class"))
+        setTimeout(() => {
+            drawDivs.forEach(div => div.classList.remove("draw-class"));
+            decideToContinue();
+        }, 500);
+        
+    }
+    else{
+        winnerDiv = document.querySelector(winner);
+        loserDiv = document.querySelector(loser);
+        winnerDiv.classList.add("winner-class");
+        loserDiv.classList.add("loser-class");
+        setTimeout(() => {
+            winnerDiv.classList.remove("winner-class");
+            loserDiv.classList.remove("loser-class");
+            decideToContinue();
+        }, 500);
+    }
 }
 
-let userWins = 0, computerWins = 0;
+function decideToContinue() {
+    if (userWins != 5 && computerWins != 5){
+        startListening();    
+        return;
+    }
+    const finalMessageDiv = document.querySelector('.final-message');
 
-for (let i = 0; i < 5; i++) {
-    let winner = playGameRound();
+    winnerMessageHeading = document.createElement('h1'); 
+    winnerMessageHeading.classList.add('winner-message')
+    if(userWins == 5){
+        winnerMessageHeading.textContent = 'The user won! '; 
+        winnerMessageHeading.style.color = 'lightblue';
+    } else{
+        winnerMessageHeading.textContent = 'The computer won!';
+        winnerMessageHeading.style.color = 'lemonchiffon';
+    }
 
-    if (winner == 'user') userWins++; // 35 and 36 count the amount of wins each player had
-    else if (winner == 'computer') computerWins++;
-    console.log(`Round ${i + 1}\nUser ${userWins} x Computer ${computerWins}`);
-}
+    const playAgainButton = document.createElement('button');
+    playAgainButton.textContent = 'Play Again?';
+    playAgainButton.classList.add('play-again');
 
-if (computerWins > userWins) {
-    console.log('Computer won!');
-} else if (userWins > computerWins) {
-    console.log('User won!');
-} else {
-    console.log(`I'ts a draw!`);
+    finalMessageDiv.appendChild(winnerMessageHeading);
+    finalMessageDiv.appendChild(playAgainButton);
+
+    playAgainButton.addEventListener('click', () => {
+        userWins = 0;
+        computerWins = 0;
+        finalMessageDiv.removeChild(winnerMessageHeading);
+        finalMessageDiv.removeChild(playAgainButton);
+        
+        userWinsParagraph.textContent = computerWinsParagraph.textContent = `0 POINTS`;
+        startListening();
+    }); 
 }
